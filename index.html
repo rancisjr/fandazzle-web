@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fandazzle</title>
+    <link rel="stylesheet" href="tailwind.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="./sass/styles.scss" />
+    <script defer src="https://unpkg.com/alpinejs@3.5.1/dist/cdn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+    <link rel="script" href="js/index.js">
+    <script src="js/index.js"></script>
+</head>
+<body 
+      x-data="{navbarOpen: false, scrolledFromTop: false}"
+      class="bg-body text-white font-poppins pb-12" 
+      :class="{
+           'overflow-hidden': navbarOpen,
+           'overflow-auto': !navbarOpen
+      }"
+      > 
+      <script src="index.js">
+        function updateList() {
+            const titles = [...document.querySelectorAll('h1, h2')].sort((a, b) => {
+                return Math.abs(a.getBoundingClientRect().top) - Math.abs(b.getBoundingClientRect().top);
+         });
+
+           document.querySelectorAll(".selected-circle").forEach(c => c.classList.remove("selected-circle"));
+
+           document.querySelectorAll(".nav-dot")[[...document.querySelectorAll('h1, h2')].indexOf(titles[0])].classList.add("selected-circle");
+  
+         }
+
+           updateList();
+           window.addEventListener('scroll', () => {
+           updateList();
+             });
+
+  </script>           
+
+    <!--header-->    
+    <header class="
+                  py-6               
+                "
+                >
+      <div class="container flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full ">
+              
+                  <div class="text-white text-lg font-bold ">fan.Dazzle
+                  </div>
+
+                  <button class="md:hidden" @click="navbarOpen = !navbarOpen">
+                     <svg width="26" height="18" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg"
+                      >
+                  <path d="M13 17.5H0.25V14.6667H13V17.52M25.75 10.4167H0.25V7.58333H25.75V10.4167ZM25.75 3.33333H13V0.5H25.75V3.33333Z" fill="white"/>               </svg>
+                  </button> 
+                  
+
+                      
+                  <div class="hidden md:flex space-x-12 md:space-x-6 items-center">
+                    <a href="#graphics" class="text-white mr-5 hover:text- md:text-sm hover:text-theme">Design</a>
+                    <a href="#portfolio" class="text-white mr-5 hover:text- md:text-sm hover:text-theme">Portfolio's</a>
+                    <a href="#coding" class="text-white mr-5 hover:text- md:text-sm hover:text-theme">Coding</a>
+                    <a href="#music" class="text-white mr-5 hover:text- md:text-sm hover:text-theme">Music</a>
+                    <a href="#gaming" class="text-white mr-5 hover:text- md:text-sm hover:text-theme">Gaming</a>
+                    <a href="#ladies" class="text-white mr-5 hover:text- md:text-sm hover:text-theme">Ladies</a>
+                    <a href="#accounts" class="text-white mr-5 hover:text- md:text-sm hover:text-theme">Accounts</a>
+                    <a href="#join-us" class="text-white mr-5 hover:text- md:text-sm"><button class="px-6 py-2 bg-theme font-bold rounded hover:bg-purple-700 hover:text-white">Login</button></a>
+                  </div> 
+                  
+      
+      </div>
+                <ul class="fixed left-1/4 right-0 min-h-screen bg-body mx-6 space-y-6 p-6 transform translate-x-full transition duration-200  md:hidden lg:hidden  md:translate-x-0"
+                    :class="{'translate-x-full': !navbarOpen, 'translate-x-0': navbarOpen}"
+                >
+
+                      <li>
+                          <a href="#graphics" class="text-white">Design</a>
+                      </li>
+                      <li>                        
+                           <a href="#portfolio" class="text-white">Portfolio's</a>
+                      </li>
+                      <li>
+                            <a href="#coding" class="text-white">Coding</a>
+                     </li>
+                       <li>
+                            <a href="#music" class="text-white">Music</a>
+                       </li>
+                       <li>
+                             <a href="#gaming" class="text-white">Gaming</a>
+                       </li>
+                      <li>
+                             <a href="#ladies" class="text-white">Ladies</a>
+                       </li>
+                       <li>
+                             <a href="#accounts" class="text-white">Accounts</a>
+                        </li>
+                        <li>
+                          <a href="#join-us" class="text-white mr-5 hover:text- md:text-sm"><button class="px-28 py-2 bg-theme font-bold rounded hover:bg-purple-700 hover:text-white">Login</button></a>
+                        </li>
+                </ul> 
+
+      </header>
+
+    <!-- WHOLE PAGE CONTAINER-->
+      <div class="container mt-16 flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full ">
+          <div class="flex flex-wrap md:flex-nowrap">
+
+            <nav class="inline-block lg:mr-24 lg:w-4 fixed left-percentage hidden xl:block"  x-intersect="$el.classList.add('scale')">
+                  <div class="absolute left-50 transform -translate-x-1/2 space-y-6 mt-36">
+                        <a href="#graphics" class="nav-dot selected-circle block w-7 h-7 rounded-full border-4 border-nav bg-body">
+                            <span class="bg-black px-2 py-1 rounded-md ml-10 opacity-0 text-sm">Graphics</span>
+                        </a>
+                        <a href="#portfolio" class="nav-dot block w-7 h-7 rounded-full border-4 border-nav bg-body">
+                          <span class="bg-black px-2 py-1 rounded-md ml-10 opacity-0 text-sm">Portfolio's</span>
+                        </a>
+                        <a href="#coding" class="nav-dot block w-7 h-7 rounded-full border-4 border-nav bg-body">
+                          <span class="bg-black px-2 py-1 rounded-md ml-10 opacity-0 text-sm">websites</span>
+                        </a>
+                        <a href="#music" class="nav-dot block w-7 h-7 rounded-full border-4 border-nav bg-body">
+                          <span class="bg-black px-2 py-1 rounded-md ml-10 opacity-0 text-sm">Music</span>
+                        </a>
+                        <a href="#gaming" class="nav-dot block w-7 h-7 rounded-full border-4 border-nav bg-body">
+                          <span class="bg-black px-2 py-1 rounded-md ml-10 opacity-0 text-sm">Gaming</span>
+                        </a>
+                        <a href="#ladies" class="nav-dot block w-7 h-7 rounded-full border-4 border-nav bg-body">
+                          <span class="bg-black px-2 py-1 rounded-md ml-10 opacity-0 text-sm">4Ladies</span>
+                        </a>
+                        <a href="#accounts" class="nav-dot block w-7 h-7 rounded-full border-4 border-nav bg-body">
+                          <span class="bg-black px-2 py-1 rounded-md ml-10 opacity-0 text-sm">Accounts</span>
+                        </a>                       
+                  </div>
+            </nav>
+
+            <div class="flex flex-wrap lg:ml-20 justify-center md:justify-start max-w-xl mt-0 md:my-36"  x-intersect="$el.classList.add('fadeInUp')">
+                      <h1 class="font-bold text-5xl md:text-6xl lg:text-7xl text-center md:text-left ">Unlock {<br> your !magination <br>}</h1> <br>
+                      <span><a href="#"><button class="px-6 py-2 bg-theme font-bold rounded mt-8 hover:bg-purple-700 hover:text-white">Become a member</button></a></span>
+                </div>
+              <img src="img/undraw_art_lover_re_fn8g.svg" alt="undraw_art_lover_re_fn8g" class=" lg:w-1/4 lg:mr-40 lg:mt-16 md:w-4 w-3/4 mt-12 md:absolute -mt-01 md:mt-0 right-0 -z-1 justify-center" x-intersect="$el.classList.add('scale')" >
+
+
+
+               <!--second cursor attempt-->
+               <div class="cursor"></div>
+               <div class="cursor-follower"></div>
+                    <div class="wrapper">
+                      <div class="portfolio-item">
+                        <div class="portfolio-thumb">
+                          <img src="#" alt="">
+                    </div>
+                 </div>
+               </div>
+                 <script>
+                             const cursor = document.querySelector('.cursor');
+                              document.addEventListener('mousemove', (e) => {
+                                 cursor.style.left = e.pageX + 'px';
+                                 cursor.style.top = e.pageY + 'px';
+                              })
+
+                          /*var cursor = $(".cursor"),
+                          follower = $(".cursor-follower");
+
+                          var posX = 0,
+                          posY = 0, 
+                          mouseX = 0,
+                          mouseY = 0;
+
+                          TweenMax.to({}, 0.016, {
+                            repeat: -1,
+                            onRepeat: function() {
+                                posX += (mouseX = posX) / 9;
+                                posY += (mouseY = posY) / 9;
+
+                                TweenMax.set(follower,{
+                                   css: {
+                                     left: posX - 20,
+                                     top: posY - 20
+                                   }
+                                });
+                                TweenMax.set(cursor, {
+                                  css: {
+                                    left: mouseX,
+                                    top: mouseY
+                                 }
+                                });
+                            }
+                          });
+
+                          $(document).on("mousemove", function(e){
+                              mouseX = e.pageX;
+                              mouseY = e.pageY;
+                          });
+
+                          $(".portfolio-item img").on("mouseenter", function() {
+                              cursor.addClass("active");
+                              follower.addClass("active");
+                          });
+
+                          $(".portfolio-item img").on("mouseleave", function() {
+                              cursor.removeClass("active");
+                              follower.removeClass("active");
+                          }); */
+                         </script>
+          
+          </div>
+     </div>
+      
+     <!--Graphics section-->
+     <div class="container mt-36 flex justify-between items-center mx-auto px-8 md:px-14 lg:px-40 w-full ">
+            <section class="w-full">
+              <h2 id="graphics" class="secondary-title">Graphics Design {Logos, Mographics, prototypes }</h2>
+              <p class="section-paragraph mt-5">Welcome to the home of Graghics illustration, expresion, animation and story-telling <br> Here we make web and app UI/Ux, Product Designs, Branding, Fliers and more</p>
+
+              <div class="grid ">
+
+                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 lg:mt-16 rounded-full gap-6 mt-10 flex flex-wrap lg:ml-5 justify-center md:justify-start max-w-xl mt-30 md:my-36">
+                      <img src="img/g6.png" alt="" class="rounded-xl">
+                      <img src="img/g10.png" alt="" class="rounded-xl">
+                      <img src="img/g7.png" alt="" class="rounded-xl">
+                      <img src="img/g4.png" alt="" class="rounded-xl">
+                      <img src="img/g1.png" alt="" class="rounded-xl">
+                      <img src="img/g9.png" alt="" class="rounded-xl">
+                      <span class="py-6"><a href="#"><button class="px-48 md:px-6 lg:px-6 py-2 lg:flex lg:-ml-5 bg-theme font-bold rounded -mt-1 mx-auto items-center lg:text-left lg:mt-5 hover:bg-purple-700 hover:text-white" x-intersect="$el.classList.add('fadeInUp')">more</button></a></span>
+                      <h2 class=" hidden lg:flex md:flex font-bold lg:font-bold text-3xl lg:text-7xl md:text-5xl lg:mr-40 lg:mt-14 mt-10 md:absolute -mt-01 md:mt-0 right-0 -z-1 justify-center" x-intersect="$el.classList.add('fadeInRight')">#Rancified</h2> <br>
+                      <h2 class="text-transparent hover:text-white hidden lg:flex md:flex font-bold lg:font-bold text-3xl lg:text-8xl fill-none md:text-5xl lg:mr-40 lg:mt-14 mt-10 md:absolute -mt-01 md:mt-0 right-0 -z-1 justify-center" x-intersect="$el.classList.add('fadeInRight')">#Rancified</h2> <br>
+                      
+                    </div>
+
+                  </div>
+            </section>
+     </div>
+     
+     <!--portfolio section-->
+     <div class="container mt-20 flex items-center mx-auto px-0 md:px-14 lg:mt-10 lg:px-40 w-full"  x-intersect="$el.classList.add('fadeInUp')">
+          <section class="w-full lg:ml-1"> 
+                  <h2 id="portfolio" class="secondary-title ml-10 lg:ml-0 md:ml-0 lg:mr-0">Our portfolio</h2>
+                  <p class="section-paragraph ml-10 lg:ml-0 md:ml-0 mt-5">Come check out our skills and qualifications...</p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:pl-2" x-intersect="$el.classList.add('fadeInUp')">
+                    <div class="flex sm:flex-row flex-col lg:ml-0 md:ml-0 items-center mt-20 sm:justify-start justify-center text-center sm:text-left">
+                      <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="img/port1.JPG">
+                      <div class="flex-grow sm:pl-8">
+                        <h2 class="title- font-medium text-lg text-white">Francis Uche</h2>
+                        <h3 class="text-gray-500 mb-3">Designer</h3>
+                        <p class="mb-4">Feel free to contact me at any time.</p>
+                        <span class="inline-flex">
+                          <a class="text-gray-500">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                            </svg>
+                          </a>
+                          <a class="ml-2 text-gray-500">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                            </svg>
+                          </a>
+                          <a class="ml-2 text-gray-500">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                              <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                            </svg>
+                          </a>
+                        </span>
+                      </div>
+                      </div>
+                    
+
+                  <div class=" flex sm:flex-row flex-col lg:ml-0 md:ml-0 items-center mt-20 sm:justify-start justify-center text-center sm:text-left">
+                    <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="img/port1.JPG">
+                    <div class="flex-grow sm:pl-8">
+                      <h2 class="title- font-medium text-lg text-white">Francis Uche</h2>
+                      <h3 class="text-gray-500 mb-3">3D/2D animator</h3>
+                      <p class="mb-4">Feel free to contact me at any time.</p>
+                      <span class="inline-flex">
+                        <a class="text-gray-500">
+                          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                          </svg>
+                        </a>
+                        <a class="ml-2 text-gray-500">
+                          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                          </svg>
+                        </a>
+                        <a class="ml-2 text-gray-500">
+                          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                            <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                          </svg>
+                        </a>
+                      </span>
+                    </div>
+                    </div>
+                 
+
+                  <div class="hidden lg:flex md:flex sm:flex-row flex-col lg:ml-0 md:ml-0 items-center mt-20 sm:justify-start justify-center text-center sm:text-left">
+                  <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="img/port1.JPG">
+                  <div class="flex-grow sm:pl-8">
+                    <h2 class="title- font-medium text-lg text-white">Francis Uche</h2>
+                    <h3 class="text-gray-500 mb-3">Game Developer</h3>
+                    <p class="mb-4">Feel free to contact me at any time.</p>
+                    <span class="inline-flex">
+                      <a class="text-gray-500">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                        </svg>
+                      </a>
+                      <a class="ml-2 text-gray-500">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                        </svg>
+                      </a>
+                      <a class="ml-2 text-gray-500">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                        </svg>
+                      </a>
+                    </span>
+                  </div>
+                     </div>
+                  
+
+                  <div class="hidden lg:flex md:flex sm:flex-row flex-col lg:ml-0 md:ml-0 items-center mt-20 sm:justify-start justify-center text-center sm:text-left">
+                    <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="img/port1.JPG">
+                    <div class="flex-grow sm:pl-8">
+                      <h2 class="title- font-medium text-lg text-white">Rancis</h2>
+                      <h3 class="text-gray-500 mb-3">Producer</h3>
+                      <p class="mb-4">Feel free to contact me at any time.</p>
+                      <span class="inline-flex">
+                        <a class="text-gray-500">
+                          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                          </svg>
+                        </a>
+                        <a class="ml-2 text-gray-500">
+                          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                          </svg>
+                        </a>
+                        <a class="ml-2 text-gray-500">
+                          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                            <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                          </svg>
+                        </a>
+                      </span>
+                    </div>
+                     </div>
+                  </div>
+
+                  <br><span><a href="#"><button class="flex px-40 md:px-6 lg:px-6 py-2 ml-10  lg:mr-0 lg:ml-0 md:mr-0 md:ml-0 mt-4 font-bold bg-theme rounded mt-8 hover:bg-purple-700 hover:text-white">View more</button></a></span>
+            </section>
+          </div>
+
+      <!--coding section-->
+        <div class="container mt-28 flex items-center mx-auto px-0 md:px-14 lg:mt-10 lg:px-40 w-full">
+          <div class="w-full lg:mt-36" x-intersect="$el.classList.add('fadeInUp')">
+
+                    <h2 id="coding" class="secondary-title ml-10 lg:ml-0 md:ml-0 lg:mr-0">Coding { websites, Apps }</h2> 
+                    <p class="section-paragraph ml-10 lg:ml-0 md:ml-0 mt-5">We build user friendly and interesting Ui and UX for your websites and apps. <br> Our team offers the best user experience in terms of navigation and graphical content, <br>high quality assets for your websites and error free operation. <br> try us out, create an account to stay updated with our latest design trends <br> To stand a chance at winning a free HD Design pack.</p>
+                    <span class="-mt-10"><a href="#"><button class="flex px-40 md:px-6 lg:px-6 py-2 ml-10  lg:mr-0 lg:ml-0 md:mr-0 md:ml-0 mt-4 font-bold bg-theme rounded mt-8 hover:bg-purple-700 hover:text-white">Take a look</button></a></span>           
+              
+          </div> 
+          <img src="img/undraw_personal_website_re_c8dv.svg" alt="undraw_art_lover_re_fn8g" class="hidden lg:flex md:flex lg:w-1/4 lg:mr-40 lg:mt-36 md:w-4 w-3/4 mt-12 md:absolute -mt-01 md:mt-0 right-0 -z-1 justify-center" x-intersect="$el.classList.add('scale')" >           
+        </div>
+        
+        <div class="container mt-20">
+
+        </div>
+      
+      <!--Music section-->
+      <div class="container flex mt-46  items-center mx-auto px-0 md:px-14 lg:mt-48 lg:px-40 w-full">
+        <div class="w-full lg:mt-36" x-intersect="$el.classList.add('fadeInUp')">
+                    <h2 id="music" class="secondary-title ml-10 lg:ml-0 md:ml-0 lg:mr-0">Our Sound { beats, plugins, recording_sessions }</h2> 
+                    <p class="section-paragraph ml-10 lg:ml-0 md:ml-0 mt-5">Check out our beats or record a track with us</p>
+                  
+                      <img src="img/undraw_compose_music_ovo2.svg" alt="undraw_art_lover_re_fn8g" class="lg:w-1/4 lg:mr-40 mt-124 lg:mt-4 md:w-4 ml-14 w-3/4 mt-12 md:absolute -mt-01 md:mt-0 right-0 -z-1 justify-center" x-intersect="$el.classList.add('scale')" >
+              
+                    <span class=""><a href="#"><button class="flex px-40 md:px-6 lg:px-6 py-2 ml-10 lg:mr-0 lg:ml-0 md:mr-0 md:ml-0 mt-4 font-bold bg-theme rounded mt-8 hover:bg-purple-700 hover:text-white">View more</button></a></span>
+
+            </div>
+
+          </div>
+
+      <!--gaming section-->
+      <div class="container flex mt-52 items-center mx-auto px-0 md:px-14 lg:mt-48 lg:px-40 w-full">
+        <div class="w-full lg:mt-36" x-intersect="$el.classList.add('fadeInUp')">
+                
+                     <h2 id="gaming" class="secondary-title ml-10 lg:ml-0 md:ml-0 lg:mr-0">3D Modelling & Game Development</h2> 
+                     <p class="section-paragraph ml-10 lg:ml-0 md:ml-0 mt-5">we build 3D models, Animation, High res Rendering and Game Development <br>Powered by Unreal Engine 4-5, Blender, C4D and more...</p>
+
+                     
+
+                     <span class=""><a href="#"><button class="flex px-32 md:px-6 lg:px-6 py-2 ml-10  lg:mr-0 lg:ml-0 md:mr-0 md:ml-0 mt-4 font-bold bg-theme rounded mt-8 hover:bg-purple-700 hover:text-white">Explore our universe</button></a></span>
+                     
+                     
+               
+        </div>   
+                <img src="img/undraw_gaming_re_cma2.svg" alt="undraw_art_lover_re_fn8g" class="hidden lg:flex md:flex lg:w-1/4 lg:mr-40 lg:mt-36 md:w-4 w-3/4 mt-12 md:absolute md:mt-0 right-0 -z-1 justify-center" x-intersect="$el.classList.add('scale')" >         
+      </div>
+
+      <!--ladies section-->
+      <div class="container flex mt-52 items-center mx-auto px-0 md:px-14 lg:mt-48 lg:px-40 w-full">
+        <div class="w-full lg:mt-36" x-intersect="$el.classList.add('fadeInUp')">
+               
+                  <h2 id="ladies" class="secondary-title ml-10 lg:ml-0 md:ml-0 lg:mr-0">Ladies { Make_Up, Skin Care }</h2> 
+                  <p class="section-paragraph ml-10 lg:ml-0 md:ml-0 mt-5">we also offer facial makeup services for events <br>skin care products, wigs and more...</p>
+
+                  <img src="img/undraw_makeup_artist_rxn8.svg" alt="undraw_art_lover_re_fn8g" class="lg:hidden md:hidden lg:w-1/4 ml-12 lg:mr-40 lg:mt-4 md:w-4 w-3/4 mt-12 md:absolute md:mt-0 right-0 -z-1 justify-center" x-intersect="$el.classList.add('scale')" >
+
+                  <span class=""><a href="#"><button class="flex px-44 md:px-6 lg:px-6 py-2 ml-10 lg:mt-4 lg:mr-0 lg:ml-0 md:mr-0 md:ml-0 mt-4 font-bold bg-theme rounded mt-8 hover:bg-purple-700 hover:text-white">Dive in</button></a></span>
+                 
+        </div> 
+                 <img src="img/undraw_makeup_artist_rxn8.svg" alt="undraw_art_lover_re_fn8g" class="hidden lg:flex lg:w-1/4 ml-12 lg:mr-40 lg:mt-40 md:w-4 w-3/4 mt-12 md:absolute md:mt-0 right-0 -z-1 justify-center" x-intersect="$el.classList.add('scale')" >           
+      </div>
+
+      <!--accounts section-->
+      <div class="container flex mt-52 items-center mx-auto px-0 md:px-14 lg:mt-48 lg:px-40 w-full">
+        <div class="w-full lg:mt-36" x-intersect="$el.classList.add('fadeInUp')">
+                  <h2 id="accounts" class="secondary-title ml-10 lg:ml-0 md:ml-0 lg:mr-0">Accounts { market_place }</h2> 
+                  <p class="section-paragraph ml-10 lg:ml-0 md:ml-0 mt-5">Create an account for free, deposit and purchase from the fandazzle marketplace <br>Also stand a chance to win #fanOfTheMonth award</p>
+                  <span class=""><a href="#"><button class="flex px-40 md:px-6 lg:px-6 py-2 ml-10 lg:mt-4 lg:mr-0 lg:ml-0 md:mr-0 md:ml-0 mt-4 font-bold bg-theme rounded mt-8 hover:bg-purple-700 hover:text-white">Go to account</button></a></span>
+        </div>
+                  <img src="img/undraw_revenue_re_2bmg.svg" alt="undraw_art_lover_re_fn8g" class="hidden lg:flex md:flex lg:w-1/6 lg:mr-40 lg:mt-36 md:w-4 w-3/4 mt-12 md:absolute -mt-01 md:mt-0 right-0 -z-1 justify-center" x-intersect="$el.classList.add('scale')" >
+                    
+      </div>
+
+      <!--footer-->
+      <div class="container h-26 my-2 flex mt-40 items-center mx-auto px-0 md:px-14 lg:mt-48 lg:px-40 lg:py-2 w-full">
+        <div class="w-full my-2 lg:mt-36  " x-intersect="$el.classList.add('fadeInUp')">
+             <a class="flex title-font font-medium items-center md:justify-start lg:pr-0 lg:float-left justify-center lg:inline-flex text-white">
+                   <img src="img/logo.png" class="h-10 w-16"></img>
+                   <span class="ml-3 text-xl text-white">fanDazzle</span>
+            </a>
+            
+                <p class="text-sm text-white ml-40 mt-4 lg:inline-flex lg:mt-3 lg:ml-8 lg:pl-0 lg:float-left">| &nbsp &nbsp &nbsp © 2022 — Fandazzle 
+                 <a href="https://twitter.com/knyttneve" class="text-white ml-1" rel="noopener noreferrer" target="_blank">@Rancis</a>
+               </p>
+              
+               <span class="inline-flex ml-48 sm:mt-0 mt-4 lg:mt-3 lg:ml-68 lg:float-right lg:right-0">
+              <a class="text-white">
+                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                </svg>
+              </a>
+              <a class="ml-3 text-white">
+                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                </svg>
+              </a>
+              <a class="ml-3 text-white">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                </svg>
+              </a>
+              <a class="ml-3 text-white">
+                <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                  <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                </svg>
+              </a>
+            </span>
+
+       </div>
+      </div>
+
+
+
+    </body>
+           
+          <!--Cursor-->
+          <!--<div class="cursor">
+            <div class="cursor-media">
+                <video src="videos/websites.4"
+                      preload="auto"
+                      autoplay
+                      muted
+                      loop
+                      id="websites"
+                ></video>
+                <video src="videos/apps.4"
+                      preload="auto"
+                      autoplay
+                      muted
+                      loop
+                      id="title"
+               ></video>
+               <video src="videos/branding.4"
+                      preload="auto"
+                      autoplay
+                      muted
+                      loop
+                      id="images"
+                ></video>
+            </div>-->
+
+  
+</html>
